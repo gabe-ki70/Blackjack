@@ -4,6 +4,6 @@ public class Casino {
     }
 
     public Casino(){
-        System.out.println("Welcome to Gabe's Native American Reservation Casino");
+        System.out.println("Welcome to Gabe's Casino");
     }
 }

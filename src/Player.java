@@ -1,10 +1,10 @@
 public class Player {
 
-    //current value of cards
-    //hand - what cards you have
-    //name of player
-    //is dealer or player
-    //choose to hit
-    //choose to stay
+    public int cardvalue;
+    public String nameofhand;
+    public String playername;
+    public boolean isdealer;
+    public boolean ishitting;
+    public boolean isstaying;
 
 }
