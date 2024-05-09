@@ -7,7 +7,7 @@ public class Card {
     public Card(int pType, int pSuit){
         if(pType == 0){
             type = "Ace";
-            cardvalue = 1;
+            cardvalue = 11;
         }
         else if(pType == 1){
             type = "Two";
