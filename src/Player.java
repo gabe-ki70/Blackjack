@@ -1,7 +1,7 @@
 public class Player {
 
-    public int cardvalue;
-    public String nameofhand;
+    public int cardsvalue;
+    public Card[] hand;
     public String playername;
     public boolean isdealer;
     public boolean ishitting;
