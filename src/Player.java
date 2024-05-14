@@ -7,4 +7,13 @@ public class Player {
     public boolean ishitting;
     public boolean isstaying;
 
+    public Player(){
+        System.out.println(cardsvalue);
+        System.out.println(hand);
+        System.out.println(playername);
+        System.out.println(isdealer);
+        System.out.println(ishitting);
+        System.out.println(isstaying);
+    }
+
 }
