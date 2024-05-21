@@ -1,19 +1,37 @@
+import java.sql.SQLOutput;
+import java.util.Arrays;
+
 public class Player {
 
-    public int cardsvalue;
-    public Card[] hand;
-    public String playername;
-    public boolean isdealer;
-    public boolean ishitting;
-    public boolean isstaying;
+    public int handValue;
+    public Card[] hand = new Card[2];
+    public String name;
+    public boolean isPlayer; //dealer vs. player - maybe make into a boolean
+    public boolean isHit;
+    int numCards;
+    public Player(String pUserName) {
+        name = pUserName;
+        isPlayer = true;
 
-    public Player(){
-        System.out.println(cardsvalue);
-        System.out.println(hand);
-        System.out.println(playername);
-        System.out.println(isdealer);
-        System.out.println(ishitting);
-        System.out.println(isstaying);
+    }
+
+    public void print() {
+        if (isPlayer){
+            System.out.println("hi, " + name);
+            System.out.println("You have " + handValue + " points");
+        } else {
+            System.out.println("the dealer has " + handValue + " points");
+        }
+        for (int i=0; i<hand.length; i++) {
+            hand[i].print();
+        }
+
+    }
+
+    public void addCard(Card c){
+        hand[numCards] = c;
+        numCards = numCards+1;
+        handValue += c.value;
     }
 
 }
