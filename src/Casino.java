@@ -2,6 +2,7 @@ import java.util.Scanner;
 public class Casino {
 
     public Card[] deck;
+    public int numDealtCards;
     public boolean isHit;
     public Player p;
     public Player dealer;
@@ -33,9 +34,33 @@ public class Casino {
 
         dealer.print();
 
-        p.print();
+System.out.println("");
+System.out.println("Do you want to hit or stand?");
+String decision = scan.nextLine();
+System.out.println(decision);
+        boolean isHit;
+if(decision.equals("hit")){
+    isHit = true;
+    System.out.println("You decided to hit");
+}
+else{
+    isHit = false;
+    System.out.println("You decided to stand");
+}
 
-
+if(isHit){
+    //take a card from the deck add it to hand
+    //use add card to do this
+    //update value
+    p.addCard(deck[numDealtCards++]);
+    numDealtCards++;
+    p.print();
+}
+else{
+    //dealer has to play
+    //dealer hits until 17 or greater
+        //useu add card to do this
+}
 
 
 
@@ -77,6 +102,7 @@ public class Casino {
 
         dealer.addCard(deck[2]);
         dealer.addCard(deck[3]);
+        numDealtCards = 4;
     }
 
 }

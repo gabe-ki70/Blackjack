@@ -16,12 +16,14 @@ public class Player {
     }
 
     public void print() {
+        System.out.println("");
         if (isPlayer){
             System.out.println("hi, " + name);
             System.out.println("You have " + handValue + " points");
         } else {
             System.out.println("the dealer has " + handValue + " points");
         }
+
         for (int i=0; i<hand.length; i++) {
             hand[i].print();
         }
@@ -29,6 +31,10 @@ public class Player {
     }
 
     public void addCard(Card c){
+        if(numCards>=2){
+            //TODO: make an array that is 1 larger than the hand array
+            //TODO: copy over all the values in hand array to the new array
+        }
         hand[numCards] = c;
         numCards = numCards+1;
         handValue += c.value;
