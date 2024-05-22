@@ -2,12 +2,13 @@ import java.sql.SQLOutput;
 import java.util.Arrays;
 
 public class Player {
+    public int handLength;
 
     public int handValue;
     public Card[] hand = new Card[2];
     public String name;
     public boolean isPlayer; //dealer vs. player - maybe make into a boolean
-    public boolean isHit;
+    public String decision;
     int numCards;
     public Player(String pUserName) {
         name = pUserName;
@@ -18,26 +19,26 @@ public class Player {
     public void print() {
         System.out.println("");
         if (isPlayer){
-            System.out.println("hi, " + name);
-            System.out.println("You have " + handValue + " points");
+            System.out.println("You have " + handValue + " points:");
         } else {
-            System.out.println("the dealer has " + handValue + " points");
+            System.out.println("the dealer has " + hand[0].value + " points:");
         }
-
-        for (int i=0; i<hand.length; i++) {
+        for (int i=0; i<handLength; i++) {
             hand[i].print();
         }
 
     }
 
     public void addCard(Card c){
-        if(numCards>=2){
-            //TODO: make an array that is 1 larger than the hand array
-            //TODO: copy over all the values in hand array to the new array
+        Card[] temp = new Card[hand.length + 1];
+        for (int i=0; i<hand.length; i++) {
+            temp[i] = hand[i];
         }
+
         hand[numCards] = c;
         numCards = numCards+1;
         handValue += c.value;
+
     }
 
 }
