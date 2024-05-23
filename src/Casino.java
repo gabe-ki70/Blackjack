@@ -3,6 +3,7 @@ import java.util.Scanner;
 public class Casino {
 
     public Card[] deck;
+    public boolean isHit;
     public int deckPosition;
     public Player p;
     public Player dealer;
@@ -22,26 +23,30 @@ public class Casino {
 
 
 
+        Scanner scan = new Scanner(System.in);
         System.out.println("enter your username:");
         String userName = scan.nextLine();
         System.out.println(userName);
         p = new Player(userName);
-
         dealer = new Player("dealer");
         dealer.isPlayer = false;
-
         deal();
-
         p.print();
 
         dealer.print();
+
+        p.print();
+
+
+
+
+
         playGame();
     }
 
     public void makeDeck() {
         deck = new Card[52];
         int count=0;
-
         //setting the suit
         for (int s=0; s<4; s++) {
             for (int t=0; t<13; t++) {
@@ -50,17 +55,14 @@ public class Casino {
             }
         }
     }
-
     public void shuffleDeck() {
         for (int x=0; x<52; x++) {
             int randomIndex = (int)(Math.random()*52);
             Card randomCard = deck[randomIndex];
-
-            Card temp = deck[x];
+            Card moreCards = deck[x];
             deck[x]=randomCard;
-            deck[randomIndex] = temp;
+            deck[randomIndex] = moreCards;
         }
-
     }
     public void printDeck() {
         for (int i=0; i<52; i++) {
@@ -69,33 +71,41 @@ public class Casino {
     }
 
     public void deal(){
-        dealCard(p);
-        dealCard(p);
+        p.addCard(deck[0]);
+        p.addCard(deck[1]);
+       // dealCard(p);
+        //dealCard(p);
 
-        dealCard(dealer);
-        dealCard(dealer);
+        dealer.addCard(deck[2]);
+        dealer.addCard(deck[3]);
+        //dealCard(dealer);
+        //dealCard(dealer);
     }
 
     public void playGame() {
-        System.out.println("hit or stand?");
-        p.decision = scan.nextLine();
-        if (Objects.equals(p.decision, "hit")) {
-            hit(p);
+        String decision = "";
+        while(!decision.equals("stand") && p.handValue <= 21) {
+            System.out.println("hit or stand?");
+            p.decision = scan.nextLine();
+            if (Objects.equals(p.decision, "hit")) {
+                hit(p);
 
-        } if (Objects.equals(p.decision, "stand")) {
-            System.out.println("stand");
+            }
+            if (Objects.equals(p.decision, "stand")) {
+                System.out.println("stand");
+            }
         }
     }
 
-    public void hit(Player temp) {
+    public void hit(Player moreCards) {
         dealCard(p);
         p.print();
         playGame();
     }
-    public void dealCard(Player temp) {
-        temp.addCard(deck[deckPosition]);
+    public void dealCard(Player moreCards) {
+        moreCards.addCard(deck[deckPosition]);
         deckPosition++;
-        temp.handLength++;
+        moreCards.handLength++;
     }
 
 }
