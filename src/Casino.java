@@ -7,7 +7,6 @@ public class Casino {
     public int deckPosition;
     public Player p;
     public Player dealer;
-    Scanner scan = new Scanner(System.in);
     public static void main(String[] args) {
         Casino c = new Casino();
     }
@@ -19,7 +18,6 @@ public class Casino {
         System.out.println("welcome to the casino");
         makeDeck();
         shuffleDeck();
-        printDeck();
 
 
 
@@ -31,7 +29,6 @@ public class Casino {
         dealer = new Player("dealer");
         dealer.isPlayer = false;
         deal();
-        p.print();
 
         dealer.print();
 
@@ -80,18 +77,20 @@ public class Casino {
         dealer.addCard(deck[3]);
         //dealCard(dealer);
         //dealCard(dealer);
+        deckPosition = 4;
     }
 
     public void playGame() {
         String decision = "";
         while(!decision.equals("stand") && p.handValue <= 21) {
             System.out.println("hit or stand?");
+            Scanner scan = new Scanner(System.in);
             p.decision = scan.nextLine();
-            if (Objects.equals(p.decision, "hit")) {
+            if (p.decision.equals("hit")) {
                 hit(p);
 
             }
-            if (Objects.equals(p.decision, "stand")) {
+            if (p.decision.equals( "stand")) {
                 System.out.println("stand");
             }
         }
@@ -100,12 +99,11 @@ public class Casino {
     public void hit(Player moreCards) {
         dealCard(p);
         p.print();
-        playGame();
+      //  playGame();
     }
     public void dealCard(Player moreCards) {
         moreCards.addCard(deck[deckPosition]);
         deckPosition++;
-        moreCards.handLength++;
     }
 
 }
