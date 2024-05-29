@@ -88,17 +88,35 @@ public class Casino {
             p.decision = scan.nextLine();
             if (p.decision.equals("hit")) {
                 hit(p);
-
             }
             if (p.decision.equals( "stand")) {
                 System.out.println("stand");
+                if(p.handValue > dealer.handValue && p.handValue <= 21){
+                    System.out.println("You win!");
+                }
+                if(p.handValue < dealer.handValue && p.handValue <= 21){
+                    System.out.println("Dealer wins!");
+                }
+                if(p.handValue == 21){
+                    System.out.println("Blackjack! You win!");
+                }
+                break;
             }
+            if(p.handValue > 21){
+                System.out.println("Bust!");
+                break;
+            }
+
         }
+        while(dealer.handValue < 17){
+            hit(dealer);
+        }
+
     }
 
     public void hit(Player moreCards) {
-        dealCard(p);
-        p.print();
+        dealCard(moreCards);
+        moreCards.print();
       //  playGame();
     }
     public void dealCard(Player moreCards) {

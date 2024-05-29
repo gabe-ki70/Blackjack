@@ -43,6 +43,9 @@ public class Player {
         hand[numCards] = c;
         numCards = numCards+1;
         handValue += c.value;
+        if(c.type.equals("Ace") && handValue > 21){
+            c.value = 1;
+        }
 
     }
 
