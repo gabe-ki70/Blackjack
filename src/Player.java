@@ -27,7 +27,7 @@ public class Player {
             }
         } else {
             System.out.println("the dealer has " + hand[0].value + " points:");
-            hand[0].print();
+                hand[0].print();
         }
 
     }

@@ -87,37 +87,57 @@ public class Casino {
             Scanner scan = new Scanner(System.in);
             p.decision = scan.nextLine();
             if (p.decision.equals("hit")) {
-                hit(p);
+                hitP(p);
             }
-            if (p.decision.equals( "stand")) {
+            if (p.decision.equals("stand") && dealer.handValue < 22) {
                 System.out.println("stand");
-                if(p.handValue > dealer.handValue && p.handValue <= 21){
+                if (p.handValue > dealer.handValue && p.handValue <= 21) {
+                    dealer.print();
                     System.out.println("You win!");
                 }
-                if(p.handValue < dealer.handValue && p.handValue <= 21){
+                if (p.handValue < dealer.handValue && p.handValue <= 21) {
+                    dealer.print();
                     System.out.println("Dealer wins!");
                 }
-                if(p.handValue == 21){
+                if (p.handValue == 21) {
+                    dealer.print();
                     System.out.println("Blackjack! You win!");
+                }
+                if (p.handValue > 21) {
+                    System.out.println("Bust!");
+                }
+
+
+                if (dealer.handValue < 17) {
+                    hitD(dealer);
+                }
+                if (p.handValue > 21) {
+                    System.out.println("Bust!");
+                }
+
+
+                if (dealer.handValue < 17) {
+                    hitD(dealer);
                 }
                 break;
             }
-            if(p.handValue > 21){
-                System.out.println("Bust!");
-                break;
+            else{
+                dealer.print();
+                System.out.println("Dealer Busts! You Win!");
             }
-
         }
-        while(dealer.handValue < 17){
-            hit(dealer);
         }
 
+
+    public void hitP(Player player) {
+        dealCard(p);
+        p.print();
+      //  playGame();
     }
 
-    public void hit(Player moreCards) {
-        dealCard(moreCards);
-        moreCards.print();
-      //  playGame();
+    public void hitD(Player dealer){
+        dealCard(dealer);
+        dealer.print();
     }
     public void dealCard(Player moreCards) {
         moreCards.addCard(deck[deckPosition]);
