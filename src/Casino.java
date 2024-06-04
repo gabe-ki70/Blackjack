@@ -88,42 +88,39 @@ public class Casino {
             p.decision = scan.nextLine();
             if (p.decision.equals("hit")) {
                 hitP(p);
+                if (p.handValue > 21) {
+                    System.out.println("Bust!");
+                    break;
+                }
+               // System.out.println("The Dealer has " + dealer.handValue + " points:");
             }
             if (p.decision.equals("stand") && dealer.handValue < 22) {
                 System.out.println("stand");
+                while (dealer.handValue < 17) {
+                    hitD(dealer);
+                }
+                System.out.println("The Dealer has " + dealer.handValue + " points:");
+                if (dealer.handValue > 21){
+                    System.out.println("Dealer Busts!");
+                    break;
+                }
+                if (p.handValue > 21) {
+                    System.out.println("Bust!");
+                    break;
+                }
                 if (p.handValue > dealer.handValue && p.handValue <= 21) {
-                    dealer.print();
                     System.out.println("You win!");
+                    break;
                 }
                 if (p.handValue < dealer.handValue && p.handValue <= 21) {
-                    dealer.print();
                     System.out.println("Dealer wins!");
+                    break;
                 }
                 if (p.handValue == 21) {
-                    dealer.print();
                     System.out.println("Blackjack! You win!");
-                }
-                if (p.handValue > 21) {
-                    System.out.println("Bust!");
+                    break;
                 }
 
-
-                if (dealer.handValue < 17) {
-                    hitD(dealer);
-                }
-                if (p.handValue > 21) {
-                    System.out.println("Bust!");
-                }
-
-
-                if (dealer.handValue < 17) {
-                    hitD(dealer);
-                }
-                break;
-            }
-            else{
-                dealer.print();
-                System.out.println("Dealer Busts! You Win!");
             }
         }
         }
@@ -137,7 +134,7 @@ public class Casino {
 
     public void hitD(Player dealer){
         dealCard(dealer);
-        dealer.print();
+       // dealer.print();
     }
     public void dealCard(Player moreCards) {
         moreCards.addCard(deck[deckPosition]);
